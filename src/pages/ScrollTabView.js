@@ -376,7 +376,7 @@ export  default  class ScrollTabView extends Component {
     _renderError = (params)=>{
         return (
             <View style={[styles.contain,{justifyContent:'center',alignItems:'center'}]}>
-                {Platform.OS === 'ios' ? <StatusBar barStyle="light-content"/> : null}
+                
                 <TouchableOpacity onPress={()=>this.loadData()}>
                     <View style={{justifyContent:'center', alignItems:'center'}}>
                         <Image style={{width:SCALE(323),height:SCALE(271)}} source={require('../assets/nonetwork.png')}/>
@@ -387,7 +387,7 @@ export  default  class ScrollTabView extends Component {
     };
     _renderLoading = ()=> {
         return (<View style={styles.contain}>
-            {Platform.OS === 'ios' ? <StatusBar barStyle="light-content"/> : null}
+            
             <LoadingSpinner type="normal"/></View>)
     };
      renderModal = ()=> {
@@ -489,7 +489,6 @@ export  default  class ScrollTabView extends Component {
             }
             return (
                 <View style={styles.wrap}>
-                    {Platform.OS === 'ios' ? <StatusBar barStyle="light-content"/> : null}
                     <ScrollableTabView renderTabBar={this.renderTabBar} page={this.state.page}>
                         {this.renderContent(this.state.sectionList)}
                     </ScrollableTabView>
