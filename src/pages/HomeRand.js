@@ -95,31 +95,35 @@ export default class Home extends Component {
         }catch (e){this.ToastShow(e.message)}
     }
 
-    share = async()=>{
+    share = async () => {
         let data = await NativeModules.NativeUtil.showDialog();
-        if(data){
+        if (data.wechat === 3) {
+            this.clickToReport();
+            return;
+        }
+        if (data) {
             WeChat.isWXAppInstalled().then((isInstalled) => {
                 if (isInstalled) {
                     if (data.wechat === 1) {
                         WeChat.shareToSession({
                             title: "【签名分享】",
-                            description: this._shareItem && this._shareItem.title.replace(/^(\r\n)|(\n)|(\r)/,""),
+                            description: this._shareItem && this._shareItem.title.replace(/^(\r\n)|(\n)|(\r)/, ""),
                             type: 'news',
                             webpageUrl: urlConfig.DetailUrl + this._shareItem.classid + '/' + this._shareItem.id,
                             thumbImage: urlConfig.thumbImage,
-                        }).then((message)=>{message.errCode === 0  ? this.ToastShow('分享成功') : this.ToastShow('分享失败')}).catch((error) => {
+                        }).then((message) => { message.errCode === 0 ? this.ToastShow('分享成功') : this.ToastShow('分享失败') }).catch((error) => {
                             if (error.message != -2) {
                                 Toast.show(error.message);
                             }
                         });
-                    } else{
+                    } else if (data.wechat === 2) {
                         WeChat.shareToTimeline({
-                            title: "【签名分享】" + this._shareItem && this._shareItem.title.replace(/^(\r\n)|(\n)|(\r)/,""),
-                            description: this._shareItem && this._shareItem.title.replace(/^(\r\n)|(\n)|(\r)/,""),
+                            title: "【签名分享】" + this._shareItem && this._shareItem.title.replace(/^(\r\n)|(\n)|(\r)/, ""),
+                            description: this._shareItem && this._shareItem.title.replace(/^(\r\n)|(\n)|(\r)/, ""),
                             type: 'news',
                             webpageUrl: urlConfig.DetailUrl + this._shareItem.classid + '/' + this._shareItem.id,
                             thumbImage: urlConfig.thumbImage,
-                        }).then((message)=>{message.errCode === 0  ? this.ToastShow('分享成功') : this.ToastShow('分享失败')}).catch((error) => {
+                        }).then((message) => { message.errCode === 0 ? this.ToastShow('分享成功') : this.ToastShow('分享失败') }).catch((error) => {
                             if (error.message != -2) {
                                 Toast.show(error.message);
                             }
@@ -129,7 +133,7 @@ export default class Home extends Component {
                     Toast.show("没有安装微信软件，请您安装微信之后再试");
                 }
             });
-            console.log('data',data)
+            console.log('data', data)
         }
     }
     // 报告错误
@@ -156,35 +160,36 @@ export default class Home extends Component {
         }
     }
     clickToShare = (type) => {
+        console.log('XXXXXXXXXXXXX', urlConfig.thumbImage);
         this.close();
         WeChat.isWXAppInstalled().then((isInstalled) => {
             if (isInstalled) {
                 if (type === 'Session') {
                     WeChat.shareToSession({
                         title: "【签名分享】",
-                        description: this._shareItem && this._shareItem.title.replace(/^(\r\n)|(\n)|(\r)/,""),
-                        type: 'news',
+                        description: this._shareItem && this._shareItem.title.replace(/^(\r\n)|(\n)|(\r)/, ""),
+                        type: 'text',
                         webpageUrl: urlConfig.DetailUrl + this._shareItem.classid + '/' + this._shareItem.id,
                         thumbImage: urlConfig.thumbImage,
-                    }).then((message)=>{message.errCode === 0  ? this.ToastShow('分享成功') : this.ToastShow('分享失败')}).catch((e)=>{if (error.message != -2) {
-                        Toast.show(error.message);
-                    }});
-
+                    }).then((message) => { message.errCode === 0 ? this.ToastShow('分享成功') : this.ToastShow('分享失败') }).catch((e) => {
+                        if (error.message != -2) {
+                            Toast.show(error.message);
+                        }
+                    });
                 } else {
                     WeChat.shareToTimeline({
-                        title: "【签名分享】" + this._shareItem && this._shareItem.title.replace(/^(\r\n)|(\n)|(\r)/,""),
-                        description: this._shareItem && this._shareItem.title.replace(/^(\r\n)|(\n)|(\r)/,""),
-                        type: 'news',
+                        title: "【签名分享】",
+                        description: this._shareItem && this._shareItem.title.replace(/^(\r\n)|(\n)|(\r)/, ""),
+                        type: 'text',
                         webpageUrl: urlConfig.DetailUrl + this._shareItem.classid + '/' + this._shareItem.id,
                         thumbImage: urlConfig.thumbImage,
-                    }).then((message)=>{message.errCode === 0  ? this.ToastShow('分享成功') : this.ToastShow('分享失败')}).catch((error) => {
+                    }).then((message) => { message.errCode === 0 ? this.ToastShow('分享成功') : this.ToastShow('分享失败') }).catch((error) => {
                         if (error.message != -2) {
                             Toast.show(error.message);
                         }
                     });
                 }
             } else {
-                //Toast.show("没有安装微信软件，请您安装微信之后再试");
             }
         });
     }
@@ -203,7 +208,7 @@ export default class Home extends Component {
                         bottom:0,
                         overflow:'hidden'}}>
                         <View style={styles.shareParent}>
-                            {/* <TouchableOpacity
+                            <TouchableOpacity
                                 style={styles.base}
                                 onPress={()=>this.clickToShare('Session')}
                             >
@@ -220,7 +225,7 @@ export default class Home extends Component {
                                     <Image style={styles.shareIcon} source={require('../assets/share_icon_moments.png')} />
                                     <Text style={styles.spinnerTitle}>微信朋友圈</Text>
                                 </View>
-                            </TouchableOpacity> */}
+                            </TouchableOpacity>
                             <TouchableOpacity
                                 style={styles.base}
                                 onPress={()=>this.clickToReport()}
@@ -403,8 +408,8 @@ export default class Home extends Component {
                     paddingBottom: 10,
                     fontWeight: '300'
                 }} onPress={() => { this.setClipboardContent(item.title && item.title.replace(/^(\r\n)|(\n)|(\r)/, ""), index, item) }}>
-                    <IconSimple name="symbol-female" size={15} color='orange' /> {item.title && item.title.replace(/^(\r\n)|(\n)|(\r)/, "")}{'\n'}
-                    <IconSimple name="symbol-male" size={15} color='orange' /> {item.ftitle && item.ftitle.replace(/^(\r\n)|(\n)|(\r)/, "")}
+                    {item.title && item.title.replace(/^(\r\n)|(\n)|(\r)/, "")}{'\n'}
+                    {item.ftitle && item.ftitle.replace(/^(\r\n)|(\n)|(\r)/, "")}
                 </Text>
             </View>
         } else {

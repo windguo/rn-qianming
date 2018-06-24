@@ -55,7 +55,7 @@ export  default  class ScrollTabView extends Component {
     static navigationOptions = {
         tabBarLabel: '表情',
         tabBarIcon: ({tintColor,focused}) => (
-            <IconSimple name="social-reddit" size={22} color={focused ? '#027fff':'black'} />
+            <IconSimple name="emotsmile" size={22} color={focused ? '#027fff':'black'} />
         ),
         header: ({navigation}) => {
             return (
@@ -75,7 +75,8 @@ export  default  class ScrollTabView extends Component {
                     </TouchableOpacity>
                 </ImageBackground>
             )
-        }
+        },
+        header:null
     };
     //88  43.7 fontSize 17 fontWeight:600 RGBA0009 textALi;center
     constructor(props) {
@@ -217,47 +218,47 @@ export  default  class ScrollTabView extends Component {
         WRITE_CACHE(storageKeys.sectionList, result);
         console.log('res', res);
     };
-        renderTab = (tabs) => {
-            let array = [];
-            array.push(tabs.map((item) => {
-                return <Text style={{width: 50, height: 20}}>{item}</Text>
-            }));
-            return array;
-        }
-        renderTabBar = (params) => {
-            global.activeTab = params.activeTab;
-            this.state.sectionList.forEach((v, i) => {
-                if (i === params.activeTab) {
-                    global.activeClassId = v.classid
-                }
-            })
+    renderTab = (tabs) => {
+        let array = [];
+        array.push(tabs.map((item) => {
+            return <Text style={{width: 50, height: 20}}>{item}</Text>
+        }));
+        return array;
+    }
+    renderTabBar = (params) => {
+        global.activeTab = params.activeTab;
+        this.state.sectionList.forEach((v, i) => {
+            if (i === params.activeTab) {
+                global.activeClassId = v.classid
+            }
+        })
 
-            return <ScrollableTabBar activeTextColor='#027fff' underlineStyle={{height: 0,width:0}}
-                                     backgroundColor='white' textStyle={{fontSize: 16, fontWeight:'100'}}
-                                     tabStyle={{paddingLeft: 10, paddingRight: 10}} />;
-        }
-        pageNumber = (number) => {
-            let page = 0;
-            this.state.sectionList.forEach((v, i) => {
-                if (parseInt(v.classid) === number) {
-                    page = i
-                }
-            })
-            this.setState({page: page});
-        }
-        renderContent = (sectionList) => {
-            let list = [];
-            list.push(sectionList.map((data, index) => {
-                return <HomeBiaoqing tabLabel={data.classname} data={data} {...this.props} pageNumber={(number) => {
-                    this.pageNumber(number)
-                }} index={index}/>
-            }));
-            return list;
-        }
+        return <ScrollableTabBar activeTextColor='#027fff' underlineStyle={{height: 0,width:0}}
+                                    backgroundColor='white' textStyle={{fontSize: 16, fontWeight:'100'}}
+                                    tabStyle={{paddingLeft: 10, paddingRight: 10}} />;
+    }
+    pageNumber = (number) => {
+        let page = 0;
+        this.state.sectionList.forEach((v, i) => {
+            if (parseInt(v.classid) === number) {
+                page = i
+            }
+        })
+        this.setState({page: page});
+    }
+    renderContent = (sectionList) => {
+        let list = [];
+        list.push(sectionList.map((data, index) => {
+            return <HomeBiaoqing tabLabel={data.classname} data={data} {...this.props} pageNumber={(number) => {
+                this.pageNumber(number)
+            }} index={index}/>
+        }));
+        return list;
+    }
     _renderError = ()=>{
         return (
             <View style={[styles.contain,{justifyContent:'center',alignItems:'center'}]}>
-                {Platform.OS === 'ios' ? <StatusBar barStyle="light-content"/> : null}
+                {Platform.OS === 'ios' ? <StatusBar barStyle="dark-content"/> : null}
                 <TouchableOpacity onPress={()=>this.loadData()}>
                     <View style={{justifyContent:'center', alignItems:'center'}}>
                         <Image style={{width:SCALE(323),height:SCALE(271)}} source={require('../assets/nonetwork.png')}/>
@@ -268,7 +269,7 @@ export  default  class ScrollTabView extends Component {
     };
     _renderLoading = ()=> {
         return (<View style={styles.contain}>
-            {Platform.OS === 'ios' ? <StatusBar barStyle="light-content"/> : null}
+            {Platform.OS === 'ios' ? <StatusBar barStyle="dark-content"/> : null}
             <LoadingSpinner type="normal"/></View>)
     };
 
@@ -279,8 +280,8 @@ export  default  class ScrollTabView extends Component {
             return this._renderError();
         } else {
             return (
-                <View style={{flex: 1}}>
-                    {Platform.OS === 'ios' ? <StatusBar barStyle="light-content"/> : null}
+                <View style={styles.wrap}>
+                    {Platform.OS === 'ios' ? <StatusBar barStyle="dark-content"/> : null}
                     <ScrollableTabView renderTabBar={this.renderTabBar} page={this.state.page}>
                         {this.renderContent(this.state.sectionList)}
                     </ScrollableTabView>
@@ -303,6 +304,15 @@ export  default  class ScrollTabView extends Component {
         alignItems:'flex-end'
     }
 const styles = StyleSheet.create({
+    wrap: {
+        flex: 1,
+        backgroundColor: '#fff',
+        ...ifIphoneX({
+            paddingTop: 40
+        }, {
+                paddingTop: Platform.OS === "ios" ? 20 : SCALE(StatusBarHeight())
+            }),
+    },
     contain:{
         flex:1,
         justifyContent: 'center',

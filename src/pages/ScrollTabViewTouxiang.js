@@ -42,7 +42,7 @@ import Button from '../components/Button';
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 import {ifIphoneX} from '../utils/iphoneX';
-import HomeRand from './HomeRand';
+import HomeTouxiang from './HomeTouxiang';
 import storageKeys from '../utils/storageKeyValue'
 import codePush from 'react-native-code-push'
 import SplashScreen from 'react-native-splash-screen'
@@ -53,9 +53,9 @@ import HttpUtil from  '../utils/HttpUtil';
 // <Image source={require('../assets/reload.png')} style={{width: 25, height: 25}}/>
 export  default  class ScrollTabView extends Component {
     static navigationOptions = {
-        tabBarLabel: '网名',
+        tabBarLabel: '头像',
         tabBarIcon: ({tintColor,focused}) => (
-            <IconSimple name="eye" size={22} color={focused ? '#f03801':'black'} />
+            <IconSimple name="graduation" size={22} color={focused ? 'red':'black'} />
         ),
         header: ({navigation}) => {
             return (
@@ -66,7 +66,7 @@ export  default  class ScrollTabView extends Component {
                         <View style={{ justifyContent: 'center', marginLeft: 10, alignItems: 'center', height: 43.7 }}>
                         </View>
                     </TouchableOpacity>
-                    <Text style={{ fontSize: 17, textAlign: 'center', lineHeight: 43.7, color: 'white', fontWeight: '100' }}>网名大全</Text>
+                    <Text style={{ fontSize: 17, textAlign: 'center', lineHeight: 43.7, color: 'white', fontWeight: '100' }}>表情大全</Text>
                     <TouchableOpacity activeOpacity={1} onPress={() => {
                         navigation.state.routes[0].routes[0].params.rightFuc && navigation.state.routes[0].routes[0].params.rightFuc();
                     }}>
@@ -196,7 +196,7 @@ export  default  class ScrollTabView extends Component {
     }
 
     loadData = async()=>{
-        let url = urlConfig.sectionListRand;
+        let url = urlConfig.sectionListTouxiangClass;
         console.log('sectionList',url);
         let res = await HttpUtil.GET(url);
         if(!res||!res.result){
@@ -233,7 +233,7 @@ export  default  class ScrollTabView extends Component {
                 }
             })
 
-            return <ScrollableTabBar activeTextColor='#f03801' underlineStyle={{height: 0,width:0}}
+            return <ScrollableTabBar activeTextColor='red' underlineStyle={{height: 0,width:0}}
                                      backgroundColor='white' textStyle={{fontSize: 16, fontWeight:'100'}}
                                      tabStyle={{paddingLeft: 10, paddingRight: 10}} />;
         }
@@ -249,7 +249,7 @@ export  default  class ScrollTabView extends Component {
         renderContent = (sectionList) => {
             let list = [];
             list.push(sectionList.map((data, index) => {
-                return <HomeRand tabLabel={data.classname} data={data} {...this.props} pageNumber={(number) => {
+                return <HomeTouxiang tabLabel={data.classname} data={data} {...this.props} pageNumber={(number) => {
                     this.pageNumber(number)
                 }} index={index}/>
             }));

@@ -15,11 +15,14 @@ import {
 } from 'react-native';
 import {StackNavigator,TabNavigator} from 'react-navigation';
 import Detail from './pages/Detail';
+import BiaoqingDetail from './pages/BiaoqingDetail';
 import web from './pages/web';
 import Home from './pages/Home';
 import ScrollTabView from './pages/ScrollTabView';
 import ScrollTabViewRand from './pages/ScrollTabViewRand';
 import ScrollTabViewBiaoqing from './pages/ScrollTabViewBiaoqing';
+import ScrollTabViewTouxiang from './pages/ScrollTabViewTouxiang';
+import ScrollTabViewAdd from './pages/ScrollTabViewAdd';
 import Tab from './components/Tab'
 import Login from  './pages/Login'
 import SearchTag from './pages/Search/index';
@@ -80,6 +83,9 @@ const _configureTransition = () => {
 const TabNavigaApp = TabNavigator({
     New: { screen: ScrollTabView },
     Rand: { screen: ScrollTabViewRand },
+    // Add: { screen: ScrollTabViewAdd },
+    Biaoqing: { screen: ScrollTabViewBiaoqing },
+    Touxiang: { screen: ScrollTabViewTouxiang },
     My:{screen: My},
 },{
     lazy: true,
@@ -95,11 +101,14 @@ const NavgationApp = StackNavigator({
     Home: {screen: Home},
     Index: {screen: TabNavigaApp},
     Detail: {screen: Detail},
+    BiaoqingDetail: {screen: BiaoqingDetail},
     Web: {screen: web},
     Login: {screen: Login},
     Publish: {screen: Publish},
+    Add: {screen: ScrollTabViewAdd},
     Collection: {screen: Collection},
     User: {screen: User},
+    Creat: {screen: Creat},
     CreatTag: {screen: CreatTag},
     SearchTag: {screen: SearchTag},
     Search:{screen:Search},

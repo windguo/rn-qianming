@@ -118,9 +118,12 @@ export  default  class web extends Component {
 
        // const patchPostMessageJsCode = '(' + String(patchPostMessageFunction) + ')();window.postMessage(document.cookie)';
         return (
-            <WebView source={{uri: this.pubLishUrl}} onNavigationStateChange={(e) => {
-                this.onNavigationStateChange(e)
-            }} startInLoadingState={true} />
+            <View>
+                {Platform.OS === 'ios' ? <StatusBar barStyle="light-content" /> : null}
+                <WebView source={{uri: this.pubLishUrl}} onNavigationStateChange={(e) => {
+                    this.onNavigationStateChange(e)
+                }} startInLoadingState={true} />
+            </View>
         );
     }
     _onRefresh = () =>{};

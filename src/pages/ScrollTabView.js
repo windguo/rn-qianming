@@ -343,13 +343,6 @@ export  default  class ScrollTabView extends Component {
     this.setState({sectionList: result});
     console.log('res', res);
 };
-        renderTab = (tabs) => {
-            let array = [];
-            array.push(tabs.map((item) => {
-                return <Text style={{width: 50, height: 20}}>{item}</Text>
-            }));
-            return array;
-        }
         renderTabBar = (params) => {
             global.activeTab = params.activeTab;
             this.state.sectionList.forEach((v, i) => {
@@ -495,7 +488,7 @@ export  default  class ScrollTabView extends Component {
                 return this._renderError("暂无数据点击请求");
             }
             return (
-                <View style={{flex: 1}}>
+                <View style={styles.wrap}>
                     {Platform.OS === 'ios' ? <StatusBar barStyle="light-content"/> : null}
                     <ScrollableTabView renderTabBar={this.renderTabBar} page={this.state.page}>
                         {this.renderContent(this.state.sectionList)}
@@ -530,6 +523,15 @@ export  default  class ScrollTabView extends Component {
     }
 
 const styles = StyleSheet.create({
+    wrap:{
+        flex:1,
+        // backgroundColor:'#fff',
+        // ...ifIphoneX({
+        //     paddingTop: 40
+        // }, {
+        //     paddingTop: Platform.OS === "ios" ? 20 : SCALE(StatusBarHeight())
+        // }),
+    },
     contain:{
         flex:1,
         justifyContent: 'center',

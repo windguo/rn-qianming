@@ -95,31 +95,33 @@ export default class Home extends Component {
         }catch (e){this.ToastShow(e.message)}
     }
 
-    share = async()=>{
+    share = async () => {
         let data = await NativeModules.NativeUtil.showDialog();
-        if(data){
+        if (data.wechat === 3) {
+            this.clickToReport();
+            return;
+        }
+        if (data) {
             WeChat.isWXAppInstalled().then((isInstalled) => {
                 if (isInstalled) {
                     if (data.wechat === 1) {
                         WeChat.shareToSession({
-                            title: "【签名分享】",
-                            description: this._shareItem && this._shareItem.title.replace(/^(\r\n)|(\n)|(\r)/,""),
-                            type: 'news',
-                            webpageUrl: urlConfig.DetailUrl + this._shareItem.classid + '/' + this._shareItem.id,
-                            thumbImage: urlConfig.thumbImage,
-                        }).then((message)=>{message.errCode === 0  ? this.ToastShow('分享成功') : this.ToastShow('分享失败')}).catch((error) => {
+                            imageUrl: this._shareItem && this._shareItem.nurl,
+                            titlepicUrl: this._shareItem && this._shareItem.titlepic,
+                            type: 'imageUrl',
+                            webpageUrl: urlConfig.DetailUrl + this._shareItem.classid + '/' + this._shareItem.id
+                        }).then((message) => { message.errCode === 0 ? this.ToastShow('分享成功') : this.ToastShow('分享失败') }).catch((error) => {
                             if (error.message != -2) {
                                 Toast.show(error.message);
                             }
                         });
-                    } else{
-                        WeChat.shareToTimeline({
-                            title: "【签名分享】" + this._shareItem && this._shareItem.title.replace(/^(\r\n)|(\n)|(\r)/,""),
-                            description: this._shareItem && this._shareItem.title.replace(/^(\r\n)|(\n)|(\r)/,""),
-                            type: 'news',
-                            webpageUrl: urlConfig.DetailUrl + this._shareItem.classid + '/' + this._shareItem.id,
-                            thumbImage: urlConfig.thumbImage,
-                        }).then((message)=>{message.errCode === 0  ? this.ToastShow('分享成功') : this.ToastShow('分享失败')}).catch((error) => {
+                    } else if (data.wechat === 2) {
+                        WeChat.shareToSession({
+                            imageUrl: this._shareItem && this._shareItem.nurl,
+                            titlepicUrl: this._shareItem && this._shareItem.titlepic,
+                            type: 'imageUrl',
+                            webpageUrl: urlConfig.DetailUrl + this._shareItem.classid + '/' + this._shareItem.id
+                        }).then((message) => { message.errCode === 0 ? this.ToastShow('分享成功') : this.ToastShow('分享失败') }).catch((error) => {
                             if (error.message != -2) {
                                 Toast.show(error.message);
                             }
@@ -129,9 +131,9 @@ export default class Home extends Component {
                     Toast.show("没有安装微信软件，请您安装微信之后再试");
                 }
             });
-            console.log('data',data)
+            console.log('data', data)
         }
-    }
+    };
     // 报告错误
     clickToReport = () => {
         let url = urlConfig.ReportURL + '/' + this._shareItem.classid + '/' + this._shareItem.id;
@@ -156,35 +158,34 @@ export default class Home extends Component {
         }
     }
     clickToShare = (type) => {
+        console.log('XXXXXXXXXXXXX', urlConfig.thumbImage);
         this.close();
         WeChat.isWXAppInstalled().then((isInstalled) => {
             if (isInstalled) {
                 if (type === 'Session') {
                     WeChat.shareToSession({
-                        title: "【签名分享】",
-                        description: this._shareItem && this._shareItem.title.replace(/^(\r\n)|(\n)|(\r)/,""),
-                        type: 'news',
-                        webpageUrl: urlConfig.DetailUrl + this._shareItem.classid + '/' + this._shareItem.id,
-                        thumbImage: urlConfig.thumbImage,
-                    }).then((message)=>{message.errCode === 0  ? this.ToastShow('分享成功') : this.ToastShow('分享失败')}).catch((e)=>{if (error.message != -2) {
-                        Toast.show(error.message);
-                    }});
-
+                        imageUrl: this._shareItem && this._shareItem.nurl,
+                        titlepicUrl: this._shareItem && this._shareItem.titlepic,
+                        type: 'imageUrl',
+                        webpageUrl: urlConfig.DetailUrl + this._shareItem.classid + '/' + this._shareItem.id
+                    }).then((message) => { message.errCode === 0 ? this.ToastShow('分享成功') : this.ToastShow('分享失败') }).catch((e) => {
+                        if (error.message != -2) {
+                            Toast.show(error.message);
+                        }
+                    });
                 } else {
                     WeChat.shareToTimeline({
-                        title: "【签名分享】" + this._shareItem && this._shareItem.title.replace(/^(\r\n)|(\n)|(\r)/,""),
-                        description: this._shareItem && this._shareItem.title.replace(/^(\r\n)|(\n)|(\r)/,""),
-                        type: 'news',
-                        webpageUrl: urlConfig.DetailUrl + this._shareItem.classid + '/' + this._shareItem.id,
-                        thumbImage: urlConfig.thumbImage,
-                    }).then((message)=>{message.errCode === 0  ? this.ToastShow('分享成功') : this.ToastShow('分享失败')}).catch((error) => {
+                        imageUrl: this._shareItem && this._shareItem.nurl,
+                        titlepicUrl: this._shareItem && this._shareItem.titlepic,
+                        type: 'imageUrl',
+                        webpageUrl: urlConfig.DetailUrl + this._shareItem.classid + '/' + this._shareItem.id
+                    }).then((message) => { message.errCode === 0 ? this.ToastShow('分享成功') : this.ToastShow('分享失败') }).catch((error) => {
                         if (error.message != -2) {
                             Toast.show(error.message);
                         }
                     });
                 }
             } else {
-                //Toast.show("没有安装微信软件，请您安装微信之后再试");
             }
         });
     }
@@ -203,7 +204,7 @@ export default class Home extends Component {
                         bottom:0,
                         overflow:'hidden'}}>
                         <View style={styles.shareParent}>
-                            {/* <TouchableOpacity
+                            <TouchableOpacity
                                 style={styles.base}
                                 onPress={()=>this.clickToShare('Session')}
                             >
@@ -220,7 +221,7 @@ export default class Home extends Component {
                                     <Image style={styles.shareIcon} source={require('../assets/share_icon_moments.png')} />
                                     <Text style={styles.spinnerTitle}>微信朋友圈</Text>
                                 </View>
-                            </TouchableOpacity> */}
+                            </TouchableOpacity>
                             <TouchableOpacity
                                 style={styles.base}
                                 onPress={()=>this.clickToReport()}
@@ -240,17 +241,17 @@ export default class Home extends Component {
             </TouchableWithoutFeedback>
         );
     };
-    show = (item)=>{
+    show = (item) => {
         this._shareItem = item;
-        if(Platform.OS==='android'){
+        if (Platform.OS === 'android') {
             this.share()
             return;
         }
         this._ViewHeight.setValue(0);
         this.setState({
-            visible:true
-        },  Animated.timing(this._ViewHeight, {
-            fromValue:0,
+            visible: true
+        }, Animated.timing(this._ViewHeight, {
+            fromValue: 0,
             toValue: 140, // 目标值
             duration: 200, // 动画时间
             easing: Easing.linear // 缓动函数
@@ -300,7 +301,7 @@ export default class Home extends Component {
     };
 
     dealWithLongArray = (dataArray) => {
-        // let waitDealArray = this.state.data.concat(dataArray);
+        // let waitDealArray = this._shareItem.concat(dataArray);
         //下拉刷新来几条数据，就对应的删除几条数据 ，以便填充
         let initArray = [];
         // console.log('789', sbArray);
@@ -320,7 +321,7 @@ export default class Home extends Component {
         return waitDealArray;
     }
     dealWithLoadMoreData = (dataArray) => {
-        // let waitDealArray = this.state.data.concat(dataArray);
+        // let waitDealArray = this._shareItem.concat(dataArray);
         console.log('loadMoreData',dataArray);
         let waitDealArray =this.FlatListData.concat(dataArray).filter((value)=>{return !(!value || value === "");});
         console.log('loadMoreDatacontact',waitDealArray);
@@ -393,100 +394,38 @@ export default class Home extends Component {
         }catch (e){}
     }
     renderTextAndImage = (item, index) => {
-        if (item.classid == '80' || item.classid == '85' || item.classid == '86' || item.classid == '87') {
-            return <View>
-                <Text style={{
-                    fontSize: 18,
-                    lineHeight: 26,
-                    color: item.isCopyed ? '#666666' : 'black',
-                    paddingTop: 10,
-                    paddingBottom: 10,
-                    fontWeight: '300'
-                }} onPress={() => { this.setClipboardContent(item.title && item.title.replace(/^(\r\n)|(\n)|(\r)/, ""), index, item) }}>
-                    <IconSimple name="symbol-female" size={15} color='orange' /> {item.title && item.title.replace(/^(\r\n)|(\n)|(\r)/, "")}{'\n'}
-                    <IconSimple name="symbol-male" size={15} color='orange' /> {item.ftitle && item.ftitle.replace(/^(\r\n)|(\n)|(\r)/, "")}
-                </Text>
+        return <View>
+            <View>
+                <Text activeOpacity={0.8} onPress={() => {}} style={{ fontSize: 18, paddingBottom: 10 }}>{item.title}</Text>
             </View>
-        } else {
-            return <View>
-                <Text style={{
-                    fontSize: 18,
-                    lineHeight: 26,
-                    color: item.isCopyed ? '#666666' : 'black',
-                    paddingTop: 10,
-                    paddingBottom: 10,
-                    fontWeight: '300'
-                }} onPress={() => { this.setClipboardContent(item.title && item.title.replace(/^(\r\n)|(\n)|(\r)/, "") + item.ftitle && item.ftitle.replace(/^(\r\n)|(\n)|(\r)/, ""), index, item) }}>
-                    {item.title && item.title.replace(/^(\r\n)|(\n)|(\r)/, "")}{'\n'}
-                    {item.ftitle && item.ftitle.replace(/^(\r\n)|(\n)|(\r)/, "")}
-                </Text>
-            </View>
-        }
+            <Text activeOpacity={0.8} onPress={() => {}} style={{ lineHeight: 26, fontSize: 16, color: '#555' }}>
+                {item.nurl ? <ImageProgress
+                    source={{ uri: item.nurl }}
+                    resizeMode={'center'}
+                    style={{ width: WIDTH - 40, height: 50 }}
+                /> : null}
+            </Text>
+        </View>
     }
     _renderItem = ({ item, index }) => {
         if (item.adType && item.picUrl) {
-            return <TouchableOpacity activeOpacity={1} onPress={() => {
+            return <TouchableOpacity activeOpacity={0.8} onPress={() => {
+                this.pushToUrls(item.goUrl)
             }}>
                 <View style={{ backgroundColor: '#ffffff', flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 15, justifyContent: 'center', alignItems: 'center' }}>
                     {item.picUrl ? <ImageProgress
                         source={{ uri: item.picUrl }}
-                        resizeMode={'cover'}
-                        indicator={Pie}
-                        indicatorProps={{
-                            size: 40,
-                            borderWidth: 0,
-                            color: 'rgba(255, 160, 0, 0.8)',
-                            unfilledColor: 'rgba(200, 200, 200, 0.1)'
-                        }}
-                        style={{ width: WIDTH - 40, height: 100 }} /> : null}
+                        resizeMode={'center'}
+                        style={{ width: WIDTH - 40, height: 50 }} /> : null}
                 </View>
             </TouchableOpacity>
         }
         return (
             <TouchableOpacity activeOpacity={1} onPress={() => {
-                this.pushToUrls(item.goUrl)
             }}>
                 <View>
                     {index === 0 ? <View style={{ width: WIDTH, height: 10, backgroundColor: Color.f5f5f5 }} /> : <View />}
-                    <View style={{ backgroundColor: '#ffffff', flexDirection: 'row', paddingHorizontal: 20, paddingTop: 10,paddingBottom:10, justifyContent: 'space-between' }}>
-                        <View style={{ flexDirection: 'row' }}>
-                            <Text style={{ color: '#666666', fontWeight: '100' }} onPress={() => {
-                                this.props.navigation.navigate('User', {
-                                    username: item.username,
-                                    userid: item.userid
-                                });
-                            }}>
-                                ^
-                                <Text>
-                                    {item.username}
-                                </Text>
-                                ^
-                            </Text>
-                        </View>
-                        <View style={{ flexDirection: 'row' }}>
-                            {(this.props.data.classid === '0' || this.props.data.classid === '1') ? <View style={{ flexDirection: 'row' }}>
-                                <Text style={{
-                                    marginLeft: 10,
-                                    paddingVertical: 2,
-                                    color: '#666666',
-                                    fontWeight: '100'
-                                }}>
-                                    
-                                </Text>
-                            </View> :
-                                <View>
-                                    <Text style={{
-                                        paddingVertical: 2,
-                                        color: '#666666',
-                                        fontWeight: '100'
-                                    }}>
-                                        
-                                    </Text>
-                                </View>
-                            }
-                        </View>
-                    </View>
-                    <View style={{ backgroundColor: 'white', paddingHorizontal: 20}}>
+                    <View style={{ backgroundColor: 'white', paddingHorizontal: 20, paddingTop: 20 }}>
                         {this.renderTextAndImage(item, index)}
                         <View
                             style={{
@@ -500,8 +439,8 @@ export default class Home extends Component {
                                     paddingVertical: 2,
                                     borderWidth: 1,
                                     borderRadius: 10,
-                                    paddingLeft:10,
-                                    paddingRight:10,
+                                    paddingLeft: 10,
+                                    paddingRight: 10,
                                     fontWeight: '100',
                                     borderColor: '#eee'
                                 }}
@@ -585,7 +524,7 @@ export default class Home extends Component {
         return (
             <View style={{flex: 1}} >
                 <PullList
-                    //  data={this.state.data}
+                    //  data={this._shareItem}
                     keyExtractor={this._keyExtractor}
                     onPullRelease={this.onPullRelease}
                     renderItem={this._renderItem}

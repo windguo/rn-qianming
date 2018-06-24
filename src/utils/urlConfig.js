@@ -22,12 +22,14 @@ export default urlConfig = {
 //随机
     sectionListRand:'/e/api/qianming?getJson=wangmingClassRand',
     sectionListBiaoqingClass:'/e/api/qianming?getJson=biaoqingClass',
+    sectionListTouxiangClass:'/e/api/qianming?getJson=touxiangClass',
     //栏目列表数据后面拼接&classid=3
     // sectionListData:'/e/api/?getJson=column',
     sectionListData:'/e/api/qianming?getJson=column',
 //随机
     sectionListDataRand:'/e/api/qianming?getJson=wangmingColumn',
     sectionListDataBiaoqing:'/e/api/qianming?getJson=biaoqingColumn',
+    sectionListDataTouxiang:'/e/api/qianming?getJson=touxiangColumn',
     //发布地址
     pubLishUrl:'http://m.jianjie8.com/qianmingFromapp',
     //点赞或者踩 {classid:2,id:2,dotop:1,doajax:1,ajaxarea:'diggnum'dotop这个字段 传0 是踩踩 传1是赞}
@@ -46,8 +48,8 @@ export default urlConfig = {
     //复制完跳去详情
     DetailUrl: "http://qianming.jianjie8.com/detail/",
     Search:'/e/api/qianming/?classid=29&getJson=',
-    CreactUrl:'/e/api/qianming/creat?&getJson=c&inputName='
-
+    CreactUrl:'/e/api/qianming/creat?&getJson=c&inputName=',
+    BiaoqingDetailUrl:'/e/api/qianming/?getJson=BiaoqingContent'
 
 }
 
