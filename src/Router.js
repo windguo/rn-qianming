@@ -107,6 +107,7 @@ const NavgationApp = StackNavigator({
     Web: {screen: web},
     Login: {screen: Login},
     Publish: {screen: Publish},
+    TabMore: { screen: TabMore},
     Wangming: {screen: ScrollTabViewRand},
     Biaoqing: { screen: ScrollTabViewBiaoqing},
     Touxiang: { screen: ScrollTabViewTouxiang},

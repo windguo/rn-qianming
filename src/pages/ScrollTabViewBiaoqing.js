@@ -59,10 +59,11 @@ export  default  class ScrollTabView extends Component {
         ),
         header: ({navigation}) => {
             return (
-                <ImageBackground style={{ ...header }} source={require('../assets/backgroundImageHeader.png')} resizeMode='cover'>
+                <ImageBackground style={{ ...header }} source={require('../assets/backgroundImageHeader_yellow.png')} resizeMode='cover'>
                     <TouchableOpacity activeOpacity={1} onPress={() => {
-                        navigation.navigate('TabMore')
+                        navigation.goBack(null)
                     }}>
+                        {Platform.OS === 'ios' ? <StatusBar barStyle="light-content" /> : null}
                         <View style={{ justifyContent: 'center', marginLeft: 10, alignItems: 'center', height: 43.7 }}>
                             <IconSimple name="arrow-left" size={20} color='#ffffff' />
                         </View>
@@ -258,7 +259,7 @@ export  default  class ScrollTabView extends Component {
     _renderError = ()=>{
         return (
             <View style={[styles.contain,{justifyContent:'center',alignItems:'center'}]}>
-                {Platform.OS === 'ios' ? <StatusBar barStyle="dark-content"/> : null}
+                
                 <TouchableOpacity onPress={()=>this.loadData()}>
                     <View style={{justifyContent:'center', alignItems:'center'}}>
                         <Image style={{width:SCALE(323),height:SCALE(271)}} source={require('../assets/nonetwork.png')}/>
@@ -269,7 +270,7 @@ export  default  class ScrollTabView extends Component {
     };
     _renderLoading = ()=> {
         return (<View style={styles.contain}>
-            {Platform.OS === 'ios' ? <StatusBar barStyle="dark-content"/> : null}
+            
             <LoadingSpinner type="normal"/></View>)
     };
 
@@ -281,7 +282,7 @@ export  default  class ScrollTabView extends Component {
         } else {
             return (
                 <View style={styles.wrap}>
-                    {Platform.OS === 'ios' ? <StatusBar barStyle="dark-content"/> : null}
+                    
                     <ScrollableTabView renderTabBar={this.renderTabBar} page={this.state.page}>
                         {this.renderContent(this.state.sectionList)}
                     </ScrollableTabView>

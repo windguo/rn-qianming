@@ -66,6 +66,7 @@ export  default  class ScrollTabView extends Component {
                     <TouchableOpacity activeOpacity={1} onPress={() => {
                         navigation.state.routes[0].routes[0].params.leftFuc && navigation.state.routes[0].routes[0].params.leftFuc();
                     }}>
+                        {Platform.OS === 'ios' ? <StatusBar barStyle="light-content" /> : null}
                         <View style={{ justifyContent: 'center', marginLeft: 10, alignItems: 'center', height: 43.7 }}>
                             <MaterialIcons name="search" size={25} color='white' />
                         </View>
