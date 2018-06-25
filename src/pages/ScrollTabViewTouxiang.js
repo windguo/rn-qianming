@@ -68,7 +68,7 @@ export  default  class ScrollTabView extends Component {
                             <IconSimple name="arrow-left" size={20} color='#ffffff' />
                         </View>
                     </TouchableOpacity>
-                    <Text style={{ fontSize: 17, textAlign: 'center', lineHeight: 43.7, color: 'white', fontWeight: '100' }}>头像大全</Text>
+                    <Text style={{ fontSize: 17, textAlign: 'center', lineHeight: 43.7, color: 'white', fontWeight: '100' }}>个性头像</Text>
                     <TouchableOpacity activeOpacity={1} onPress={() => {
                         navigation.state.routes[0].routes[0].params.rightFuc && navigation.state.routes[0].routes[0].params.rightFuc();
                     }}>

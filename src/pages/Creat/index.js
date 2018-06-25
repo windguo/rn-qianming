@@ -49,8 +49,9 @@ export default class Login extends React.Component {
                     <TouchableOpacity activeOpacity={1} onPress={() => {
                         navigation.navigate('New');
                     }}>
+                        {Platform.OS === 'ios' ? <StatusBar barStyle="light-content" /> : null}
                         <View style={{ justifyContent: 'center', marginLeft: 10, alignItems: 'center', height: 43.7 }}>
-                            <IconSimple name="arrow-left" size={20} color='white' />
+                            
                         </View>
                     </TouchableOpacity>
                     <Text style={{ fontSize: 17, textAlign: 'center', fontWeight: '300', lineHeight: 43.7, color: 'white' }}>签名设计</Text>

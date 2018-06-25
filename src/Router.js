@@ -22,6 +22,7 @@ import ScrollTabView from './pages/ScrollTabView';
 import ScrollTabViewRand from './pages/ScrollTabViewRand';
 import ScrollTabViewBiaoqing from './pages/ScrollTabViewBiaoqing';
 import ScrollTabViewTouxiang from './pages/ScrollTabViewTouxiang';
+import ScrollTabViewJoke from './pages/ScrollTabViewJoke';
 import ScrollTabViewAdd from './pages/ScrollTabViewAdd';
 import Tab from './components/Tab'
 import Login from  './pages/Login'
@@ -83,11 +84,9 @@ const _configureTransition = () => {
 }
 const TabNavigaApp = TabNavigator({
     New: { screen: ScrollTabView },
-    // Rand: { screen: ScrollTabViewRand },
-    TabMore: { screen: TabMore },
+    Creat: { screen: Creat },
     // Add: { screen: ScrollTabViewAdd },
-    // Biaoqing: { screen: ScrollTabViewBiaoqing },
-    // Touxiang: { screen: ScrollTabViewTouxiang },
+    TabMore: { screen: TabMore },
     My:{screen: My},
 },{
     lazy: true,
@@ -111,6 +110,7 @@ const NavgationApp = StackNavigator({
     Wangming: {screen: ScrollTabViewRand},
     Biaoqing: { screen: ScrollTabViewBiaoqing},
     Touxiang: { screen: ScrollTabViewTouxiang},
+    Joke: { screen: ScrollTabViewJoke},
     Collection: {screen: Collection},
     User: {screen: User},
     Creat: {screen: Creat},

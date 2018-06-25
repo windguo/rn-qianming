@@ -43,6 +43,7 @@ const HEIGHT = Dimensions.get('window').height;
 import { ifIphoneX } from '../utils/iphoneX';
 import IconSimple from 'react-native-vector-icons/SimpleLineIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Ionicon from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 import urlConfig from '../utils/urlConfig';
 import PureModalUtil from '../utils/PureModalUtil';
@@ -51,7 +52,7 @@ import storageKeys from '../utils/storageKeyValue'
 import ScrollTabView from "./ScrollTabView";
 export default class Me extends Component {
     static navigationOptions = {
-        tabBarLabel: '更多',
+        tabBarLabel: '更多栏目',
         tabBarIcon: ({ tintColor, focused }) => (
             <IconSimple name="options" size={22} color={focused ? '#027fff' : 'black'} />
         ),
@@ -67,7 +68,7 @@ export default class Me extends Component {
                         </View>
                     </TouchableOpacity>
                     <Text style={{ fontSize: 17, textAlign: 'center', fontWeight: '300', lineHeight: 43.7,color:'#fff' }}>
-                        更多栏目
+                        更多精彩栏目
                     </Text>
                     <TouchableOpacity activeOpacity={1} onPress={() => {
                     }}>
@@ -189,7 +190,7 @@ export default class Me extends Component {
                                 </View>
                             </TouchableOpacity>
                         </View>
-                        <View style={{ height: 10, backgroundColor: '#f5f5f5' }}></View>
+                        <View style={{ height: 50, backgroundColor: '#f5f5f5' }}></View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
                             <Text style={{ fontSize: 16, color: 'black', textAlign: 'center' }}>取消</Text>
                         </View>
@@ -247,36 +248,52 @@ export default class Me extends Component {
             <ScrollView style={{ flex: 1, backgroundColor: Color.f5f5f5 }}>
                 <View style={{ width: WIDTH, height: 10, backgroundColor: Color.f5f5f5 }} />
                 <TouchableOpacity activeOpacity={1} onPress={() => {
+                    this.props.navigation.navigate('Joke')
+                }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', height: 50, backgroundColor: 'white', justifyContent: 'space-between' }}>
+                        <View style={{ marginLeft: 20, flexDirection: 'row', alignItems: 'center' }}>
+                            <Ionicon name="md-happy" size={22} color={Color.FontColor} />
+                            <Text style={{ marginLeft: 12,fontSize:16}}>内涵段子</Text>
+                            <Text style={{ marginLeft: 10, color: "#666", fontWeight: "100" }}>你想要的段子这里都有</Text>
+                        </View>
+                        <IconSimple name="arrow-right" size={18} color={Color.FontColor} style={{ marginRight: 20 }} />
+                    </View>
+                </TouchableOpacity>
+                <View style={{ height: 5, backgroundColor: Color.f5f5f5 }}></View>
+                <TouchableOpacity activeOpacity={1} onPress={() => {
                     this.props.navigation.navigate('Wangming')
                 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', height: 50, backgroundColor: 'white', justifyContent: 'space-between' }}>
                         <View style={{ marginLeft: 20, flexDirection: 'row', alignItems: 'center' }}>
                             <IconSimple name="eye" size={22} color={Color.FontColor} />
-                            <Text style={{ marginLeft: 10 }}>网名大全</Text>
+                            <Text style={{ marginLeft: 10, fontSize: 16 }}>网名大全</Text>
+                            <Text style={{ marginLeft: 10, color: "#666", fontWeight: "100" }}>独一无二的网名集散地</Text>
                         </View>
                         <IconSimple name="arrow-right" size={18} color={Color.FontColor} style={{ marginRight: 20 }} />
                     </View>
                 </TouchableOpacity>
-                <View style={{ height: 1, backgroundColor: Color.f5f5f5 }}></View>
+                <View style={{ height: 5, backgroundColor: Color.f5f5f5 }}></View>
                 <TouchableOpacity activeOpacity={1} onPress={() => {
                     this.props.navigation.navigate('Biaoqing')
                 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', height: 50, backgroundColor: 'white', justifyContent: 'space-between' }}>
                         <View style={{ marginLeft: 20, flexDirection: 'row', alignItems: 'center' }}>
                             <IconSimple name="emotsmile" size={22} color={Color.FontColor} />
-                            <Text style={{ marginLeft: 10 }}>表情大全</Text>
+                            <Text style={{ marginLeft: 10, fontSize: 16 }}>斗图表情</Text>
+                            <Text style={{ marginLeft: 10, color: "#666", fontWeight: "100" }}>你喜欢的斗图表情基地</Text>
                         </View>
                         <IconSimple name="arrow-right" size={18} color={Color.FontColor} style={{ marginRight: 20 }} />
                     </View>
                 </TouchableOpacity>
-                <View style={{ height: 1, backgroundColor: Color.f5f5f5 }}></View>
+                <View style={{ height: 5, backgroundColor: Color.f5f5f5 }}></View>
                 <TouchableOpacity activeOpacity={1} onPress={() => {
                     this.props.navigation.navigate('Touxiang')
                 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', height: 50, backgroundColor: 'white', justifyContent: 'space-between' }}>
                         <View style={{ marginLeft: 20, flexDirection: 'row', alignItems: 'center' }}>
                             <IconSimple name="graduation" size={22} color={Color.FontColor} />
-                            <Text style={{ marginLeft: 10 }}>头像大全</Text>
+                            <Text style={{ marginLeft: 10, fontSize: 16 }}>个性头像</Text>
+                            <Text style={{ marginLeft: 10, color: "#666", fontWeight: "100" }}>个性自己从“头像”开始</Text>
                         </View>
                         <IconSimple name="arrow-right" size={18} color={Color.FontColor} style={{ marginRight: 20 }} />
                     </View>

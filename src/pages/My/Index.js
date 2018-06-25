@@ -51,7 +51,7 @@ import storageKeys from '../../utils/storageKeyValue'
 import ScrollTabView from "../ScrollTabView";
 export default class Me extends Component {
     static navigationOptions = {
-        tabBarLabel: '我的',
+        tabBarLabel: '个人中心',
         tabBarIcon: ({ tintColor, focused }) => (
             <IconSimple name="user" size={22} color={focused ? '#027fff' : 'black'} />
         ),

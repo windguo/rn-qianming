@@ -25,6 +25,7 @@ import {
     LayoutAnimation,
     NativeModules,
     ImageBackground,
+    CameraRoll,
     FlatList,
     Clipboard
 } from 'react-native';
@@ -40,6 +41,7 @@ import storageKeys from '../utils/storageKeyValue'
 import * as WeChat from 'react-native-wechat';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import IconSimple from 'react-native-vector-icons/SimpleLineIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import HttpUtil from  '../utils/HttpUtil';
 import ImageProgress from 'react-native-image-progress';
@@ -241,6 +243,31 @@ export default class Home extends Component {
             </TouchableWithoutFeedback>
         );
     };
+
+    //保存图片
+    saveImg(img) {
+        var promise = CameraRoll.saveToCameraRoll(img);
+        promise.then(function (result) {
+            Toast.show('保存成功,请到相册查看。', {
+                duration: Toast.durations.SHORT,
+                position: Toast.positions.CENTER,
+                shadow: true,
+                animation: true,
+                hideOnPress: true,
+                delay: 0,
+            });
+        }).catch(function (error) {
+            Toast.show('保存失败！\n' + error, {
+                duration: Toast.durations.SHORT,
+                position: Toast.positions.CENTER,
+                shadow: true,
+                animation: true,
+                hideOnPress: true,
+                delay: 0,
+            });
+        });
+    }
+
     show = (item)=>{
         this._shareItem = item;
         if(Platform.OS==='android'){
@@ -453,17 +480,20 @@ export default class Home extends Component {
                                     <TouchableOpacity activeOpacity={1} onPress={() => { this.PostThumb(item, 1, index) }} hitSlop={{ left: 10, right: 10, top: 10, bottom: 10 }}>
                                         {item.isLike ? <IconSimple name="like" size={15} color='#027fff' /> : <IconSimple name="like" size={15} color='#888' />}
                                     </TouchableOpacity>
-                                    <Text style={{ marginLeft: 5, color: '#999', fontWeight: '100' }}>{item.diggtop && item.diggtop}</Text>
                                 </View>
                                 <View style={{ flexDirection: 'row', marginLeft: 10 }}>
                                     <TouchableOpacity activeOpacity={1} onPress={() => { this.PostThumb(item, 0, index) }} hitSlop={{ left: 10, right: 10, top: 10, bottom: 10 }}>
                                         {item.isUnLike ? <IconSimple name="dislike" size={15} color='#027fff' /> : <IconSimple name="dislike" size={15} color='#888' />}
                                     </TouchableOpacity>
-                                    <Text style={{ marginLeft: 5, color: '#999', fontWeight: '100' }}>{item.diggbot && item.diggbot}</Text>
                                 </View>
                                 <View style={{ flexDirection: 'row', marginLeft: 10 }}>
                                     <TouchableOpacity activeOpacity={1} onPress={() => { this.show(item) }} hitSlop={{ left: 10, right: 10, top: 10, bottom: 10 }}>
                                         <IconSimple name="share" size={15} color='#888' />
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={{ flexDirection: 'row', marginLeft: 10 }}>
+                                    <TouchableOpacity activeOpacity={1} onPress={this.saveImg.bind(this, item.nurl)} hitSlop={{ left: 10, right: 10, top: 10, bottom: 10 }}>
+                                        <MaterialIcons name="add-to-photos" size={15} color='#888' />
                                     </TouchableOpacity>
                                 </View>
                             </View>

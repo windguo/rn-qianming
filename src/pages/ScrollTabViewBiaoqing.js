@@ -68,7 +68,7 @@ export  default  class ScrollTabView extends Component {
                             <IconSimple name="arrow-left" size={20} color='#ffffff' />
                         </View>
                     </TouchableOpacity>
-                    <Text style={{ fontSize: 17, textAlign: 'center', lineHeight: 43.7, color: 'white', fontWeight: '100' }}>表情大全</Text>
+                    <Text style={{ fontSize: 17, textAlign: 'center', lineHeight: 43.7, color: 'white', fontWeight: '100' }}>斗图表情</Text>
                     <TouchableOpacity activeOpacity={1} onPress={() => {
                         navigation.state.routes[0].routes[0].params.rightFuc && navigation.state.routes[0].routes[0].params.rightFuc();
                     }}>
@@ -234,7 +234,7 @@ export  default  class ScrollTabView extends Component {
             }
         })
 
-        return <ScrollableTabBar activeTextColor='#027fff' underlineStyle={{height: 0,width:0}}
+        return <ScrollableTabBar activeTextColor='#f60' underlineStyle={{height: 0,width:0}}
                                     backgroundColor='white' textStyle={{fontSize: 16, fontWeight:'100'}}
                                     tabStyle={{paddingLeft: 10, paddingRight: 10}} />;
     }

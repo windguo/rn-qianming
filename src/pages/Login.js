@@ -43,11 +43,12 @@ export default class Login extends React.Component {
                     <TouchableOpacity activeOpacity={1} onPress={() => {
                         navigation.goBack(null);
                     }}>
+                        {Platform.OS === 'ios' ? <StatusBar barStyle="light-content" /> : null}
                         <View style={{justifyContent:'center',marginLeft:10,alignItems:'center',height:43.7}}>
                             <IconSimple name="arrow-left" size={20} color='white'/>
                         </View>
                     </TouchableOpacity>
-                    <Text style={{fontSize:17,textAlign:'center',fontWeight:'bold',lineHeight:43.7,color:'white'}}>会员登录</Text>
+                    <Text style={{fontSize:17,textAlign:'center',fontWeight:'300',lineHeight:43.7,color:'white'}}>会员登录</Text>
                     <TouchableOpacity activeOpacity={1} onPress={() => {
                     }}>
                         <View style={{justifyContent:'center',marginRight:10,alignItems:'center',height:43.7,backgroundColor:'transparent',width:20}}>

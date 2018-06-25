@@ -37,7 +37,7 @@ import HttpUtil from  '../utils/HttpUtil';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 export default class Login extends React.Component {
     static navigationOptions = {
-        tabBarLabel: '发布',
+        tabBarLabel: '我要发布',
         tabBarIcon: ({ tintColor, focused }) => (
             <IconSimple name="eye" size={22} color={focused ? '#027fff' : 'black'} />
         ),
@@ -47,11 +47,12 @@ export default class Login extends React.Component {
                     <TouchableOpacity activeOpacity={1} onPress={() => {
                         navigation.goBack(null);
                     }}>
+                        {Platform.OS === 'ios' ? <StatusBar barStyle="light-content" /> : null}
                         <View style={{justifyContent:'center',marginLeft:10,alignItems:'center',height:43.7}}>
-                            <IconSimple name="arrow-left" size={20} color='white'/>
+                            
                         </View>
                     </TouchableOpacity>
-                    <Text style={{fontSize:17,textAlign:'center',fontWeight:'bold',lineHeight:43.7,color:'white'}}>会员登录</Text>
+                    <Text style={{fontSize:17,textAlign:'center',fontWeight:'300',lineHeight:43.7,color:'white'}}>我要发布</Text>
                     <TouchableOpacity activeOpacity={1} onPress={() => {
                     }}>
                         <View style={{justifyContent:'center',marginRight:10,alignItems:'center',height:43.7,backgroundColor:'transparent',width:20}}>
@@ -128,56 +129,14 @@ export default class Login extends React.Component {
     // </ScrollView>
     render(){
         return (
-            <KeyboardAwareScrollView
-                enableOnAndroid = {false}>
-                <ScrollView  style={{ backgroundColor:'#eeeeee', width: WIDTH,flex:1}} contentContainerStyle={{alignItems:'center'}}>
-            <View style={{marginTop:HEIGHT *0.2,width:WIDTH,flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
-                <TextInput
-                    numberOfLines={1}
-                    placeholder = '请输入用户名'
-                    placeholderTextColor = '#555555'
-                    style={{ width: WIDTH - 80, fontSize: 16, color: '#555555', height: 50, backgroundColor: '#ffffff',borderRadius:10,marginHorizontal:40,paddingHorizontal:20}}
-                    onChangeText={this.userNameInputTextChange}
-                    value={this.state.username} underlineColorAndroid="transparent"></TextInput>
-            </View>
-            <View style={{marginTop:20,width:WIDTH,flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
-                <TextInput
-                    numberOfLines={1}
-                    placeholderTextColor = '#555555'
-                    placeholder = '请输入密码'
-                    secureTextEntry={true}
-                    style={{ width: WIDTH - 80, fontSize: 16, color: '#555555', height: 50, backgroundColor: '#ffffff',borderRadius:10,marginHorizontal:40,paddingHorizontal:20}}
-                    onChangeText={this.userPwdInputTextChange}
-                    value={this.state.userpwd} underlineColorAndroid="transparent"
-                />
-            </View>
-            <TouchableOpacity style={{
-                width:WIDTH,
-                alignItems: 'center',
-                justifyContent:'center',
-                marginTop:40,}} activeOpacity={0.7} onPress={this.loginButtonPress}>
-                <View style={{
-                    width:WIDTH - 80,
-                    borderRadius:10,
-                    height:50,
-                    justifyContent:'center',
-                    alignItems:'center',
-                    backgroundColor:'#027fff'
-                }}>
-                    <Text style={{fontSize:FONT(18),paddingTop:10,paddingBottom:10,backgroundColor:'transparent',color:'white',textAlign:'center'}}>立即登录</Text>
-                </View>
-            </TouchableOpacity>
-            <Modal animationType={"fade"}
-                   transparent={true}
-                   visible={this.state.visble}>
-                <View style={[styles.load_box]}>
-                    <ActivityIndicator animating={true} color={this.props.color || '#FFF'} size={'large'} style={styles.load_progress} />
-                    <Text style={[styles.load_text, this.props.textStyle]}>登录中</Text>
-                </View>
-            </Modal>
-
+                <ScrollView>
+                    <View>
+                        <Text>
+                            1111
+                        </Text>
+                    </View>
                 </ScrollView>
-            </KeyboardAwareScrollView>)
+            )
     }
 }
 const styles = StyleSheet.create({

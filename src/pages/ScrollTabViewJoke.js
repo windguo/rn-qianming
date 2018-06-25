@@ -42,7 +42,7 @@ import Button from '../components/Button';
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 import {ifIphoneX} from '../utils/iphoneX';
-import Home from './Home';
+import HomeJoke from './HomeJoke';
 import codePush from 'react-native-code-push'
 import SplashScreen from 'react-native-splash-screen'
 import * as WeChat from 'react-native-wechat';
@@ -56,22 +56,22 @@ import HttpUtil from  '../utils/HttpUtil';
 const NativeVersion = DeviceInfo.getVersion();
 export  default  class ScrollTabView extends Component {
     static navigationOptions = {
-        tabBarLabel: '个性签名',
+        tabBarLabel: '内涵段子',
         tabBarIcon: ({tintColor,focused}) => (
             <IconSimple name="bubble" size={22} color={focused ? '#027fff':'black'} />
         ),
         header: ({navigation}) => {
             return (
-                <ImageBackground style={{ ...header }} source={require('../assets/backgroundImageHeader.png')} resizeMode='cover'>
+                <ImageBackground style={{ ...header }} source={require('../assets/backgroundImageHeader_zi.png')} resizeMode='cover'>
                     <TouchableOpacity activeOpacity={1} onPress={() => {
-                        navigation.state.routes[0].routes[0].params.leftFuc && navigation.state.routes[0].routes[0].params.leftFuc();
+                        navigation.goBack(null)
                     }}>
                         {Platform.OS === 'ios' ? <StatusBar barStyle="light-content" /> : null}
                         <View style={{ justifyContent: 'center', marginLeft: 10, alignItems: 'center', height: 43.7 }}>
-                            <MaterialIcons name="search" size={25} color='white' />
+                            <IconSimple name="arrow-left" size={20} color='#ffffff' />
                         </View>
                     </TouchableOpacity>
-                    <Text style={{ fontSize: 17, textAlign: 'center', lineHeight: 43.7, color: 'white', fontWeight: '100' }}>签名大全</Text>
+                    <Text style={{ fontSize: 17, textAlign: 'center', lineHeight: 43.7, color: 'white', fontWeight: '100' }}>内涵段子</Text>
                     <TouchableOpacity activeOpacity={1} onPress={() => {
                         navigation.navigate('Creat');
                     }}>
@@ -322,7 +322,7 @@ export  default  class ScrollTabView extends Component {
     }
 
     loadData = async()=>{
-    let url = urlConfig.sectionList;
+        let url = urlConfig.sectionListJokeClass;
     console.log('sectionList',url);
     let res = await HttpUtil.GET(url);
     if(!res||!res.result){
@@ -352,7 +352,7 @@ export  default  class ScrollTabView extends Component {
                 }
             })
 
-            return <ScrollableTabBar activeTextColor='#027fff' underlineStyle={{height: 0,width:0}}
+            return <ScrollableTabBar activeTextColor='#ae32f9' underlineStyle={{height: 0,width:0}}
                                      backgroundColor='white' textStyle={{fontSize: 16, fontWeight:'100'}}
                                      tabStyle={{paddingLeft: 10, paddingRight: 10}} />;
         }
@@ -368,7 +368,7 @@ export  default  class ScrollTabView extends Component {
         renderContent = (sectionList) => {
             let list = [];
             list.push(sectionList.map((data, index) => {
-                return <Home tabLabel={data.classname} data={data} {...this.props} pageNumber={(number) => {
+                return <HomeJoke tabLabel={data.classname} data={data} {...this.props} pageNumber={(number) => {
                     this.pageNumber(number)
                 }} index={index}/>
             }));

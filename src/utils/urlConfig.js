@@ -23,9 +23,12 @@ export default urlConfig = {
     sectionListRand:'/e/api/qianming?getJson=wangmingClassRand',
     sectionListBiaoqingClass:'/e/api/qianming?getJson=biaoqingClass',
     sectionListTouxiangClass:'/e/api/qianming?getJson=touxiangClass',
+    sectionListJokeClass:'/e/api/qianming?getJson=JokeClass',
     //栏目列表数据后面拼接&classid=3
     // sectionListData:'/e/api/?getJson=column',
     sectionListData:'/e/api/qianming?getJson=column',
+
+    sectionListJoke: '/e/api/qianming?getJson=JokeColumn',
 //随机
     sectionListDataRand:'/e/api/qianming?getJson=wangmingColumn',
     sectionListDataBiaoqing:'/e/api/qianming?getJson=biaoqingColumn',
