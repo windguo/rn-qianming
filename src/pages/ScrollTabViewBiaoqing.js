@@ -61,9 +61,10 @@ export  default  class ScrollTabView extends Component {
             return (
                 <ImageBackground style={{ ...header }} source={require('../assets/backgroundImageHeader.png')} resizeMode='cover'>
                     <TouchableOpacity activeOpacity={1} onPress={() => {
-                        navigation.state.routes[0].routes[0].params.leftFuc && navigation.state.routes[0].routes[0].params.leftFuc();
+                        navigation.navigate('TabMore')
                     }}>
                         <View style={{ justifyContent: 'center', marginLeft: 10, alignItems: 'center', height: 43.7 }}>
+                            <IconSimple name="arrow-left" size={20} color='#ffffff' />
                         </View>
                     </TouchableOpacity>
                     <Text style={{ fontSize: 17, textAlign: 'center', lineHeight: 43.7, color: 'white', fontWeight: '100' }}>表情大全</Text>
@@ -75,8 +76,7 @@ export  default  class ScrollTabView extends Component {
                     </TouchableOpacity>
                 </ImageBackground>
             )
-        },
-        header:null
+        }
     };
     //88  43.7 fontSize 17 fontWeight:600 RGBA0009 textALi;center
     constructor(props) {
@@ -306,12 +306,12 @@ export  default  class ScrollTabView extends Component {
 const styles = StyleSheet.create({
     wrap: {
         flex: 1,
-        backgroundColor: '#fff',
-        ...ifIphoneX({
-            paddingTop: 40
-        }, {
-                paddingTop: Platform.OS === "ios" ? 20 : SCALE(StatusBarHeight())
-            }),
+        // backgroundColor: '#fff',
+        // ...ifIphoneX({
+        //     paddingTop: 40
+        // }, {
+        //         paddingTop: Platform.OS === "ios" ? 20 : SCALE(StatusBarHeight())
+        //     }),
     },
     contain:{
         flex:1,

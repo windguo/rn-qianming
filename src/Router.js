@@ -31,6 +31,7 @@ import My from './pages/My/Index';
 import Publish from './pages/My/Publish'
 import Collection from './pages/My/Collection'
 import User from './pages/User'
+import TabMore from './pages/TabMore'
 
 import Creat from './pages/Creat/index';
 import CreatTag from './pages/Creat/creat';
@@ -82,10 +83,11 @@ const _configureTransition = () => {
 }
 const TabNavigaApp = TabNavigator({
     New: { screen: ScrollTabView },
-    Rand: { screen: ScrollTabViewRand },
+    // Rand: { screen: ScrollTabViewRand },
+    TabMore: { screen: TabMore },
     // Add: { screen: ScrollTabViewAdd },
-    Biaoqing: { screen: ScrollTabViewBiaoqing },
-    Touxiang: { screen: ScrollTabViewTouxiang },
+    // Biaoqing: { screen: ScrollTabViewBiaoqing },
+    // Touxiang: { screen: ScrollTabViewTouxiang },
     My:{screen: My},
 },{
     lazy: true,
@@ -105,12 +107,15 @@ const NavgationApp = StackNavigator({
     Web: {screen: web},
     Login: {screen: Login},
     Publish: {screen: Publish},
-    Add: {screen: ScrollTabViewAdd},
+    Wangming: {screen: ScrollTabViewRand},
+    Biaoqing: { screen: ScrollTabViewBiaoqing},
+    Touxiang: { screen: ScrollTabViewTouxiang},
     Collection: {screen: Collection},
     User: {screen: User},
     Creat: {screen: Creat},
     CreatTag: {screen: CreatTag},
     SearchTag: {screen: SearchTag},
+    TabMore: {screen: TabMore},
     Search:{screen:Search},
     Cdetail:{screen:Cdetail}
 }, {initialRouteName: 'Index'});
