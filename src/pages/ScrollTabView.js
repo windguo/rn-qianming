@@ -53,10 +53,11 @@ import storageKeys from '../utils/storageKeyValue';
 var DeviceInfo = require('react-native-device-info');
 import JPushModule from 'jpush-react-native';
 import HttpUtil from  '../utils/HttpUtil';
+import Swiper from 'react-native-swiper';
 const NativeVersion = DeviceInfo.getVersion();
 export  default  class ScrollTabView extends Component {
     static navigationOptions = {
-        tabBarLabel: '个性签名',
+        tabBarLabel: '签名大全',
         tabBarIcon: ({tintColor,focused}) => (
             <IconSimple name="bubble" size={22} color={focused ? '#027fff':'black'} />
         ),
@@ -66,7 +67,7 @@ export  default  class ScrollTabView extends Component {
                     <TouchableOpacity activeOpacity={1} onPress={() => {
                         navigation.state.routes[0].routes[0].params.leftFuc && navigation.state.routes[0].routes[0].params.leftFuc();
                     }}>
-                        {Platform.OS === 'ios' ? <StatusBar barStyle="light-content" /> : null}
+                        
                         <View style={{ justifyContent: 'center', marginLeft: 10, alignItems: 'center', height: 43.7 }}>
                             <MaterialIcons name="search" size={25} color='white' />
                         </View>
@@ -81,7 +82,8 @@ export  default  class ScrollTabView extends Component {
                     </TouchableOpacity>
                 </ImageBackground>
             )
-        }
+        },
+        // header:null
     };
     //88  43.7 fontSize 17 fontWeight:600 RGBA0009 textALi;center
     constructor(props) {
@@ -490,6 +492,20 @@ export  default  class ScrollTabView extends Component {
             }
             return (
                 <View style={styles.wrap}>
+                    {Platform.OS === 'ios' ? <StatusBar barStyle="light-content" /> : null}
+                    {/* <View style={styles.wrapper}>
+                        <Swiper showsButtons={false} autoplay={true}>
+                            <View style={styles.slide1}>
+                                <Text style={styles.text}>Hello Swiper</Text>
+                            </View>
+                            <View style={styles.slide2}>
+                                <Text style={styles.text}>Beautiful</Text>
+                            </View>
+                            <View style={styles.slide3}>
+                                <Text style={styles.text}>And simple</Text>
+                            </View>
+                        </Swiper>
+                    </View> */}
                     <ScrollableTabView renderTabBar={this.renderTabBar} page={this.state.page}>
                         {this.renderContent(this.state.sectionList)}
                     </ScrollableTabView>
@@ -530,7 +546,33 @@ const styles = StyleSheet.create({
         //     paddingTop: 40
         // }, {
         //     paddingTop: Platform.OS === "ios" ? 20 : SCALE(StatusBarHeight())
-        // }),
+        // })
+    },
+    wrapper: {
+        height:180
+    },
+    slide1: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#9DD6EB',
+    },
+    slide2: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#97CAE5',
+    },
+    slide3: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#92BBD9',
+    },
+    text: {
+        color: '#fff',
+        fontSize: 30,
+        fontWeight: 'bold',
     },
     contain:{
         flex:1,

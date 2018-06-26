@@ -35,6 +35,7 @@ import formatData from '../utils/formatData';
 import Toast from 'react-native-root-toast';
 import LoadError from  '../components/loadError';
 const WIDTH = Dimensions.get('window').width;
+import { ifIphoneX } from '../utils/iphoneX';
 const HEIGHT = Dimensions.get('window').height;
 import PullList from '../components/pull/PullList'
 import storageKeys from '../utils/storageKeyValue'
@@ -549,7 +550,7 @@ export default class Home extends Component {
     _keyExtractor = (item, index) => index;
     render() {
         return (
-            <View style={{flex: 1}} >
+            <View style={styles.wrap} >
                 <PullList
                     //  data={this._shareItem}
                     keyExtractor={this._keyExtractor}
@@ -569,6 +570,15 @@ export default class Home extends Component {
     }
 }
 const styles = StyleSheet.create({
+    wrap: {
+        flex: 1,
+        ...ifIphoneX({
+            backgroundColor: '#fff',
+            paddingBottom: 30
+        }, {
+
+            }),
+    },
     base: {
         flex: 1
     },

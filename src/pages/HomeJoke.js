@@ -28,6 +28,7 @@ import {
     FlatList,
     Clipboard
 } from 'react-native';
+import { ifIphoneX } from '../utils/iphoneX';
 import urlConfig  from  '../utils/urlConfig';
 import ModalUtil from '../utils/modalUtil';
 import formatData from '../utils/formatData';
@@ -403,7 +404,7 @@ export default class Home extends Component {
     renderTextAndImage = (item,index) => {
         return <View>
             <Text style={{
-                fontSize: 18,
+                fontSize: 16,
                 lineHeight: 26,
                 color: item.isCopyed ? '#666666' : 'black',
                 paddingTop: 10,
@@ -516,7 +517,7 @@ export default class Home extends Component {
     _keyExtractor = (item, index) => index;
     render() {
         return (
-            <View style={{flex: 1}} >
+            <View style={styles.wrap} >
                 <PullList
                     keyExtractor={this._keyExtractor}
                     onPullRelease={this.onPullRelease}
@@ -535,6 +536,15 @@ export default class Home extends Component {
     }
 }
 const styles = StyleSheet.create({
+    wrap:{
+        flex:1,
+        ...ifIphoneX({
+            backgroundColor:'#fff',
+            paddingBottom: 30
+        }, {
+
+        }),
+    },
     base: {
         flex: 1
     },
