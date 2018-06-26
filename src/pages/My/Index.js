@@ -58,7 +58,7 @@ export default class Me extends Component {
         header: ({ navigation }) => {
             return (
                 <ImageBackground style={{ ...header }} source={require('../../assets/backgroundImageHeader.png')} resizeMode='cover'>
-                    <TouchableOpacity activeOpacity={1} onPress={() => {
+                    <TouchableOpacity activeOpacity={0.6} onPress={() => {
                         navigation.goBack(null);
                     }}>
                         {Platform.OS === 'ios' ? <StatusBar barStyle="light-content" /> : null}
@@ -67,7 +67,7 @@ export default class Me extends Component {
                         </View>
                     </TouchableOpacity>
                     <Text style={{ fontSize: 17, textAlign: 'center', fontWeight: '300', lineHeight: 43.7,color:'#fff' }}>个人中心</Text>
-                    <TouchableOpacity activeOpacity={1} onPress={() => {
+                    <TouchableOpacity activeOpacity={0.6} onPress={() => {
                     }}>
                         <View style={{ justifyContent: 'center', marginRight: 10, alignItems: 'center', height: 43.7, backgroundColor: 'transparent', width: 20 }}>
                         </View>
@@ -245,7 +245,7 @@ export default class Me extends Component {
             <ScrollView style={{ flex: 1, backgroundColor: Color.f5f5f5 }}>
                 <View style={{ width: WIDTH, height: 10, backgroundColor: Color.f5f5f5 }} />
                 <View style={{ height: 1, backgroundColor: Color.f5f5f5 }}></View>
-                <TouchableOpacity activeOpacity={1} onPress={this.clickToLogin}>
+                <TouchableOpacity activeOpacity={0.6} onPress={this.clickToLogin}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', height: 50, backgroundColor: 'white', justifyContent: 'space-between' }}>
                         <View style={{ marginLeft: 20, flexDirection: 'row', alignItems: 'center' }}>
                             <IconSimple name="user" size={22} color={Color.FontColor} />
@@ -257,7 +257,7 @@ export default class Me extends Component {
                 <View style={{ height: 1, backgroundColor: Color.f5f5f5 }}></View>
                 {this.state.username ?
                     <View>
-                        <TouchableOpacity activeOpacity={1} onPress={this.clickToPublish}>
+                        <TouchableOpacity activeOpacity={0.6} onPress={this.clickToPublish}>
                             <View style={{ flexDirection: 'row', alignItems: 'center', height: 50, backgroundColor: 'white', justifyContent: 'space-between' }}>
                                 <View style={{ marginLeft: 20, flexDirection: 'row', alignItems: 'center' }}>
                                     <IconSimple name="wallet" size={22} color={Color.FontColor} />
@@ -267,7 +267,7 @@ export default class Me extends Component {
                             </View>
                         </TouchableOpacity>
                         <View style={{ height: 1, backgroundColor: Color.f5f5f5 }}></View>
-                        {/* <TouchableOpacity activeOpacity={1} onPress={this.clickToCollection}>
+                        {/* <TouchableOpacity activeOpacity={0.6} onPress={this.clickToCollection}>
                             <View style={{ flexDirection: 'row', alignItems: 'center', height: 50, backgroundColor: 'white', justifyContent: 'space-between' }}>
                                 <View style={{ marginLeft: 20, flexDirection: 'row', alignItems: 'center' }}>
                                     <IconSimple name="wallet" size={22} color={Color.FontColor} />
@@ -278,7 +278,7 @@ export default class Me extends Component {
                         </TouchableOpacity> */}
                     </View> : <View />}
                 <View style={{ width: WIDTH, height: 10, backgroundColor: Color.f5f5f5 }} />
-                <TouchableOpacity activeOpacity={1} onPress={() => { this.pushToWeb('yjfk') }}>
+                <TouchableOpacity activeOpacity={0.6} onPress={() => { this.pushToWeb('yjfk') }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', height: 50, backgroundColor: 'white', justifyContent: 'space-between' }}>
                         <View style={{ marginLeft: 20, flexDirection: 'row', alignItems: 'center' }}>
                             <IconSimple name="question" size={22} color={Color.FontColor} />
@@ -288,7 +288,7 @@ export default class Me extends Component {
                     </View>
                 </TouchableOpacity>
                 <View style={{ height: 1, backgroundColor: Color.f5f5f5 }}></View>
-                <TouchableOpacity activeOpacity={1} onPress={() => { this.pushToWeb('yhsyxy') }}>
+                <TouchableOpacity activeOpacity={0.6} onPress={() => { this.pushToWeb('yhsyxy') }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', height: 50, backgroundColor: 'white', justifyContent: 'space-between' }}>
                         <View style={{ marginLeft: 20, flexDirection: 'row', alignItems: 'center' }}>
                             <IconSimple name="doc" size={22} color={Color.FontColor} />
@@ -299,7 +299,7 @@ export default class Me extends Component {
                 </TouchableOpacity>
                 <View style={{ width: WIDTH, height: 10, backgroundColor: Color.f5f5f5 }} />
                 {this.state.username ?
-                    <TouchableOpacity activeOpacity={1} onPress={this.quit}>
+                    <TouchableOpacity activeOpacity={0.6} onPress={this.quit}>
                         <View style={{ flexDirection: 'row', alignItems: 'center', height: 50, backgroundColor: 'white', justifyContent: 'space-between' }}>
                             <View style={{ marginLeft: 20, flexDirection: 'row', alignItems: 'center' }}>
                                 <IconSimple name="logout" size={22} color={Color.FontColor} />

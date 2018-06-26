@@ -59,7 +59,7 @@ export default class Me extends Component {
         header: ({ navigation }) => {
             return (
                 <ImageBackground style={{ ...header }} source={require('../assets/backgroundImageHeader.png')} resizeMode='cover'>
-                    <TouchableOpacity activeOpacity={1} onPress={() => {
+                    <TouchableOpacity activeOpacity={0.6} onPress={() => {
                         navigation.goBack(null);
                     }}>
                         {Platform.OS === 'ios' ? <StatusBar barStyle="light-content" /> : null}
@@ -70,7 +70,7 @@ export default class Me extends Component {
                     <Text style={{ fontSize: 17, textAlign: 'center', fontWeight: '300', lineHeight: 43.7,color:'#fff' }}>
                         更多精彩栏目
                     </Text>
-                    <TouchableOpacity activeOpacity={1} onPress={() => {
+                    <TouchableOpacity activeOpacity={0.6} onPress={() => {
                     }}>
                         <View style={{ justifyContent: 'center', marginRight: 10, alignItems: 'center', height: 43.7, backgroundColor: 'transparent', width: 20 }}>
                         </View>
@@ -247,7 +247,7 @@ export default class Me extends Component {
         return (
             <ScrollView style={{ flex: 1, backgroundColor: Color.f5f5f5 }}>
                 <View style={{ width: WIDTH, height: 10, backgroundColor: Color.f5f5f5 }} />
-                <TouchableOpacity activeOpacity={1} onPress={() => {
+                <TouchableOpacity activeOpacity={0.6} onPress={() => {
                     this.props.navigation.navigate('Joke')
                 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', height: 50, backgroundColor: 'white', justifyContent: 'space-between' }}>
@@ -260,7 +260,7 @@ export default class Me extends Component {
                     </View>
                 </TouchableOpacity>
                 <View style={{ height: 5, backgroundColor: Color.f5f5f5 }}></View>
-                <TouchableOpacity activeOpacity={1} onPress={() => {
+                <TouchableOpacity activeOpacity={0.6} onPress={() => {
                     this.props.navigation.navigate('Wangming')
                 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', height: 50, backgroundColor: 'white', justifyContent: 'space-between' }}>
@@ -273,7 +273,7 @@ export default class Me extends Component {
                     </View>
                 </TouchableOpacity>
                 <View style={{ height: 5, backgroundColor: Color.f5f5f5 }}></View>
-                <TouchableOpacity activeOpacity={1} onPress={() => {
+                <TouchableOpacity activeOpacity={0.6} onPress={() => {
                     this.props.navigation.navigate('Biaoqing')
                 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', height: 50, backgroundColor: 'white', justifyContent: 'space-between' }}>
@@ -286,7 +286,7 @@ export default class Me extends Component {
                     </View>
                 </TouchableOpacity>
                 <View style={{ height: 5, backgroundColor: Color.f5f5f5 }}></View>
-                <TouchableOpacity activeOpacity={1} onPress={() => {
+                <TouchableOpacity activeOpacity={0.6} onPress={() => {
                     this.props.navigation.navigate('Touxiang')
                 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', height: 50, backgroundColor: 'white', justifyContent: 'space-between' }}>

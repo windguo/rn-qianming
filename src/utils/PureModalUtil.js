@@ -48,7 +48,7 @@ export default class PureModalUtil extends Component {
             >
                 <TouchableOpacity
                     style={{flex: 1}}
-                    activeOpacity={1}
+                    activeOpacity={0.6}
                     onPress={this.close}
                 >
                     <View style={[styles.container, this.props.customerlayout]}>

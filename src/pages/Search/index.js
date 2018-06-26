@@ -55,7 +55,7 @@ export default class SearchTag extends Component {
             let textinput;
             return (
                 <ImageBackground style={{ ...header }} source={require('../../assets/backgroundImageHeader.png')} resizeMode='cover'>
-                    <TouchableOpacity activeOpacity={1} onPress={() => {
+                    <TouchableOpacity activeOpacity={0.6} onPress={() => {
                         navigation.goBack(null);
                     }}>
                         {Platform.OS === 'ios' ? <StatusBar barStyle="light-content" /> : null}

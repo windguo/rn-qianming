@@ -39,7 +39,7 @@ export default class Tab extends Component {
                     jumpToIndex(index);
                 }}
                 style={{width:WIDTH/count,flexDirection:'row', justifyContent:'space-around',}}
-                activeOpacity={1}
+                activeOpacity={0.6}
             >
                 <View
                     style={styles.tabItem}>

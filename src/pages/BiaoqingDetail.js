@@ -52,7 +52,7 @@ export default class Detail extends Component {
         header: ({ navigation }) => {
             return (
                 <ImageBackground style={{ ...header }} source={require('../assets/backgroundImageHeader.png')} resizeMode='cover'>
-                    <TouchableOpacity activeOpacity={1} onPress={() => {
+                    <TouchableOpacity activeOpacity={0.6} onPress={() => {
                         navigation.goBack(null);
                     }}>
                         <View style={{ justifyContent: 'center', marginLeft: 10, alignItems: 'center', height: 43.7, width: 20 }}>
@@ -288,7 +288,7 @@ export default class Detail extends Component {
         return (
             <View style={styles.wrap}>
                 <ScrollView>
-                    <TouchableOpacity activeOpacity={1} onPress={() => {
+                    <TouchableOpacity activeOpacity={0.6} onPress={() => {
                         this.state.navigation.goBack(null);
                     }}>
                         <View style={{ justifyContent: 'center', marginLeft: 10, alignItems: 'center', height: 43.7, width: 20 }}>

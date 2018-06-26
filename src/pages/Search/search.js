@@ -60,7 +60,7 @@ export default class Search extends Component {
             let textinput;
             return (
                 <ImageBackground style={{ ...header }} source={require('../../assets/backgroundImageHeader.png')} resizeMode='cover'>
-                    <TouchableOpacity activeOpacity={1} onPress={() => {
+                    <TouchableOpacity activeOpacity={0.6} onPress={() => {
                         navigation.goBack(null);
                     }}>
                         {Platform.OS === 'ios' ? <StatusBar barStyle="light-content" /> : null}
@@ -501,7 +501,7 @@ export default class Search extends Component {
     }
     _renderItem = ({item, index}) => {
         if (item.adType && item.picUrl) {
-            return  <TouchableOpacity activeOpacity={1} onPress={() => {
+            return  <TouchableOpacity activeOpacity={0.6} onPress={() => {
             }}>
                 <View style={{backgroundColor:'#ffffff',flexDirection: 'row', paddingHorizontal: 20, paddingVertical:15, justifyContent: 'center',alignItems:'center'}}>
                     { item.picUrl ? <ImageProgress
@@ -519,7 +519,7 @@ export default class Search extends Component {
             </TouchableOpacity>
         }
         return (
-            <TouchableOpacity activeOpacity={1} onPress={() => {
+            <TouchableOpacity activeOpacity={0.6} onPress={() => {
             }}>
                 <View>
                     {index === 0 ? <View style={{width:WIDTH,height:10,backgroundColor:Color.f5f5f5}}/> :<View/>}
@@ -579,19 +579,19 @@ export default class Search extends Component {
                             </View>
                             <View style={{flexDirection: 'row'}}>
                                 <View style={{flexDirection: 'row',marginLeft: 10}}>
-                                    <TouchableOpacity activeOpacity={1} onPress={()=>{this.PostThumb(item,1,index)}} hitSlop={{left:10,right:10,top:10,bottom:10}}>
+                                    <TouchableOpacity activeOpacity={0.6} onPress={()=>{this.PostThumb(item,1,index)}} hitSlop={{left:10,right:10,top:10,bottom:10}}>
                                         {item.isLike ?   <IconSimple name="like" size={15} color='#027fff'/> : <IconSimple name="like" size={15} color='#5C5C5C'/>}
                                     </TouchableOpacity>
                                     <Text style={{marginLeft: 5,fontWeight:'100'}}>{item.diggtop && item.diggtop}</Text>
                                 </View>
                                 <View style={{flexDirection: 'row', marginLeft: 10}}>
-                                    <TouchableOpacity activeOpacity={1} onPress={()=>{this.PostThumb(item,0,index)}} hitSlop={{left:10,right:10,top:10,bottom:10}}>
+                                    <TouchableOpacity activeOpacity={0.6} onPress={()=>{this.PostThumb(item,0,index)}} hitSlop={{left:10,right:10,top:10,bottom:10}}>
                                         {item.isUnLike ?   <IconSimple name="dislike" size={15} color='#027fff'/> : <IconSimple name="dislike" size={15} color='#5C5C5C'/>}
                                     </TouchableOpacity>
                                     <Text style={{marginLeft: 5,fontWeight:'100'}}>{item.diggbot && item.diggbot}</Text>
                                 </View>
                                 <View style={{flexDirection: 'row', marginLeft: 10}}>
-                                    <TouchableOpacity activeOpacity={1} onPress={()=> { this.show(item)}} hitSlop={{left:10,right:10,top:10,bottom:10}}>
+                                    <TouchableOpacity activeOpacity={0.6} onPress={()=> { this.show(item)}} hitSlop={{left:10,right:10,top:10,bottom:10}}>
                                         <IconSimple name="share" size={15} color='#5C5C5C'/>
                                     </TouchableOpacity>
                                 </View>

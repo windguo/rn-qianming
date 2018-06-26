@@ -64,7 +64,7 @@ export  default  class ScrollTabView extends Component {
         header: ({navigation}) => {
             return (
                 <ImageBackground style={{ ...header }} source={require('../assets/backgroundImageHeader.png')} resizeMode='cover'>
-                    <TouchableOpacity activeOpacity={1} onPress={() => {
+                    <TouchableOpacity activeOpacity={0.6} onPress={() => {
                         navigation.state.routes[0].routes[0].params.leftFuc && navigation.state.routes[0].routes[0].params.leftFuc();
                     }}>
                         
@@ -73,7 +73,7 @@ export  default  class ScrollTabView extends Component {
                         </View>
                     </TouchableOpacity>
                     <Text style={{ fontSize: 17, textAlign: 'center', lineHeight: 43.7, color: 'white', fontWeight: '100' }}>签名大全</Text>
-                    <TouchableOpacity activeOpacity={1} onPress={() => {
+                    <TouchableOpacity activeOpacity={0.6} onPress={() => {
                         navigation.navigate('Creat');
                     }}>
                         <View style={{ justifyContent: 'center', marginRight: 10, alignItems: 'center', height: 43.7 }}>
@@ -404,7 +404,7 @@ export  default  class ScrollTabView extends Component {
                     <Text style={{fontSize: 14}}>{this.updateConfig.message}</Text>
                 </ScrollView>
                 {this.updateConfig.android.flag ?
-                    <TouchableOpacity activeOpacity={1} onPress={this.clickDownload}>
+                    <TouchableOpacity activeOpacity={0.6} onPress={this.clickDownload}>
                         <View style={{flexDirection: 'row'}}><View style={{
                             borderTopWidth: 1,
                             borderColor: '#eeeeee',
@@ -414,7 +414,7 @@ export  default  class ScrollTabView extends Component {
                         }}>
                             <Text style={{fontSize: 16, color: '#027fff', textAlign: 'center'}}>下载</Text>
                         </View></View></TouchableOpacity> :  <View style={{flexDirection: 'row'}}>
-                        <TouchableOpacity activeOpacity={1} onPress={this.clickDownload}>
+                        <TouchableOpacity activeOpacity={0.6} onPress={this.clickDownload}>
                             <View style={{
                                 borderTopWidth: 1,
                                 borderColor: '#eeeeee',
@@ -424,7 +424,7 @@ export  default  class ScrollTabView extends Component {
                             }}>
                                 <Text style={{fontSize: 16, color: '#027fff', textAlign: 'center'}}>下载</Text>
                             </View></TouchableOpacity>
-                        <TouchableOpacity activeOpacity={1} onPress={this.clickToCancelModal}><View style={{
+                        <TouchableOpacity activeOpacity={0.6} onPress={this.clickToCancelModal}><View style={{
                             borderTopWidth: 1,
                             borderLeftWidth: 1,
                             height: 30,
@@ -446,7 +446,7 @@ export  default  class ScrollTabView extends Component {
                     <Text style={{fontSize: 14}}>{this.updateConfig.message}</Text>
                 </ScrollView>
                 {this.updateConfig.ios.flag ?
-                    <TouchableOpacity activeOpacity={1} onPress={this.clickDownload}>
+                    <TouchableOpacity activeOpacity={0.6} onPress={this.clickDownload}>
                     <View style={{flexDirection: 'row'}}><View style={{
                         borderTopWidth: 1,
                         borderColor: '#eeeeee',
@@ -456,7 +456,7 @@ export  default  class ScrollTabView extends Component {
                     }}>
                         <Text style={{fontSize: 16, color: '#027fff', textAlign: 'center'}}>立即更新</Text>
                     </View></View></TouchableOpacity> :  <View style={{flexDirection: 'row'}}>
-                        <TouchableOpacity activeOpacity={1} onPress={this.clickDownload}>
+                        <TouchableOpacity activeOpacity={0.6} onPress={this.clickDownload}>
                         <View style={{
                             borderTopWidth: 1,
                             borderColor: '#eeeeee',
@@ -466,7 +466,7 @@ export  default  class ScrollTabView extends Component {
                         }}>
                             <Text style={{fontSize: 16, color: '#027fff', textAlign: 'center'}}>立即更新</Text>
                         </View></TouchableOpacity>
-                        <TouchableOpacity activeOpacity={1} onPress={this.clickToCancelModal}><View style={{
+                        <TouchableOpacity activeOpacity={0.6} onPress={this.clickToCancelModal}><View style={{
                             borderTopWidth: 1,
                             borderLeftWidth: 1,
                             height: 50,

@@ -57,7 +57,7 @@ export default class CreatTag extends Component {
             let textinput;
             return (
                 <ImageBackground style={{ ...header }} source={require('../../assets/backgroundImageHeader.png')} resizeMode='cover'>
-                    <TouchableOpacity activeOpacity={1} onPress={() => {
+                    <TouchableOpacity activeOpacity={0.6} onPress={() => {
                         navigation.goBack(null);
                     }}>
                         {Platform.OS === 'ios' ? <StatusBar barStyle="light-content" /> : null}
@@ -460,7 +460,7 @@ export default class CreatTag extends Component {
         }catch (e){}
     }
     renderTextAndImage = (item, index) => {
-        return <TouchableOpacity activeOpacity={1} onPress={() => {
+        return <TouchableOpacity activeOpacity={0.6} onPress={() => {
             // this.props.navigation.navigate('Cdetail', {
             //     cid: item.cid,
             //     picUrl: item.picUrl
@@ -494,7 +494,7 @@ export default class CreatTag extends Component {
     }
     _renderItem = ({item, index}) => {
         if (item.adType && item.picUrl) {
-            return  <TouchableOpacity activeOpacity={1} onPress={() => {
+            return  <TouchableOpacity activeOpacity={0.6} onPress={() => {
             }}>
                 <View style={{backgroundColor:'#ffffff',flexDirection: 'row', paddingHorizontal: 20, paddingVertical:15, justifyContent: 'center',alignItems:'center'}}>
                     { item.picUrl ? <ImageProgress
@@ -512,7 +512,7 @@ export default class CreatTag extends Component {
             </TouchableOpacity>
         }
         return (
-            <TouchableOpacity activeOpacity={1} onPress={() => {
+            <TouchableOpacity activeOpacity={0.6} onPress={() => {
             }}>
                 <View>
                     {index === 0 ? <View style={{width:WIDTH,height:10,backgroundColor:Color.f5f5f5}}/> :<View/>}
@@ -520,13 +520,13 @@ export default class CreatTag extends Component {
                         {this.renderTextAndImage(item,index)}
                         <View style={{ flexDirection: 'row', justifyContent:'space-around',borderTopColor:'red'}}>
                             <View style={{ flexDirection: 'row' }}>
-                                <TouchableOpacity activeOpacity={1} onPress={() => { this.show(item) }} hitSlop={{ left: 10, right: 10, top: 10, bottom: 10 }}>
+                                <TouchableOpacity activeOpacity={0.6} onPress={() => { this.show(item) }} hitSlop={{ left: 10, right: 10, top: 10, bottom: 10 }}>
                                     <IconSimple style={{ marginLeft: 20,marginBottom:5 }} name="share" size={20} color='#5C5C5C' />
                                     <Text>分享到微信</Text>
                                 </TouchableOpacity>
                             </View>
                             <View style={{ flexDirection: 'row' }}>
-                                <TouchableOpacity activeOpacity={1} onPress={this.saveImg.bind(this, "http://www.jianjie8.com/e/api/qianming/creat" + item.picUrl)} hitSlop={{ left: 10, right: 10, top: 10, bottom: 10 }}>
+                                <TouchableOpacity activeOpacity={0.6} onPress={this.saveImg.bind(this, "http://www.jianjie8.com/e/api/qianming/creat" + item.picUrl)} hitSlop={{ left: 10, right: 10, top: 10, bottom: 10 }}>
                                     <IconSimple style={{ marginLeft: 15, marginBottom: 5}} name="cloud-download" size={20} color='#5C5C5C' />
                                     <Text>保存图片</Text>
                                 </TouchableOpacity>

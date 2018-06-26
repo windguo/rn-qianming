@@ -46,7 +46,7 @@ export  default  class web extends Component {
         header:({navigation}) =>{
             return (
                 <ImageBackground style={{ ...header }} source={require('../assets/backgroundImageHeader.png')} resizeMode='cover'>
-                <TouchableOpacity activeOpacity={1} onPress={() => {
+                <TouchableOpacity activeOpacity={0.6} onPress={() => {
                     navigation.goBack(null);
                 }}>
                     <View style={{justifyContent:'center',marginLeft:10,alignItems:'center',height:43.7}}>
@@ -54,7 +54,7 @@ export  default  class web extends Component {
                     </View>
                 </TouchableOpacity>
                 <Text style={{fontSize:17,textAlign:'center',fontWeight:'bold',lineHeight:43.7,color:'white'}}> {navigation.state.routes[navigation.state.index].params && navigation.state.routes[navigation.state.index].params.WebTitle}</Text>
-                <TouchableOpacity activeOpacity={1} onPress={() => {
+                <TouchableOpacity activeOpacity={0.6} onPress={() => {
                 }}>
                     <View style={{justifyContent:'center',marginRight:10,alignItems:'center',height:43.7,backgroundColor:'transparent',width:20}}>
                     </View>

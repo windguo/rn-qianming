@@ -46,7 +46,7 @@ export default class Login extends React.Component {
         header: ({ navigation }) => {
             return (
                 <ImageBackground style={{ ...header }} source={require('../../assets/backgroundImageHeader.png')} resizeMode='cover'>
-                    <TouchableOpacity activeOpacity={1} onPress={() => {
+                    <TouchableOpacity activeOpacity={0.6} onPress={() => {
                         navigation.navigate('New');
                     }}>
                         {Platform.OS === 'ios' ? <StatusBar barStyle="light-content" /> : null}
@@ -55,7 +55,7 @@ export default class Login extends React.Component {
                         </View>
                     </TouchableOpacity>
                     <Text style={{ fontSize: 17, textAlign: 'center', fontWeight: '300', lineHeight: 43.7, color: 'white' }}>签名设计</Text>
-                    <TouchableOpacity activeOpacity={1} onPress={() => {
+                    <TouchableOpacity activeOpacity={0.6} onPress={() => {
                     }}>
                         <View style={{ justifyContent: 'center', marginRight: 10, alignItems: 'center', height: 43.7, backgroundColor: 'transparent', width: 20 }}>
                         </View>

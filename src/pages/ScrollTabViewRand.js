@@ -58,7 +58,7 @@ export  default  class ScrollTabView extends Component {
         header: ({navigation}) => {
             return (
                 <ImageBackground style={{ ...header }} source={require('../assets/backgroundImageHeader_red.png')} resizeMode='cover'>
-                    <TouchableOpacity activeOpacity={1} onPress={() => {
+                    <TouchableOpacity activeOpacity={0.6} onPress={() => {
                         navigation.goBack(null)
                     }}>
                         {Platform.OS === 'ios' ? <StatusBar barStyle="light-content" /> : null}
@@ -67,7 +67,7 @@ export  default  class ScrollTabView extends Component {
                         </View>
                     </TouchableOpacity>
                     <Text style={{ fontSize: 17, textAlign: 'center', lineHeight: 43.7, color: 'white', fontWeight: '100' }}>网名大全</Text>
-                    <TouchableOpacity activeOpacity={1} onPress={() => {
+                    <TouchableOpacity activeOpacity={0.6} onPress={() => {
                         navigation.state.routes[0].routes[0].params.rightFuc && navigation.state.routes[0].routes[0].params.rightFuc();
                     }}>
                         <View style={{ justifyContent: 'center', marginRight: 10, alignItems: 'center', height: 43.7 }}>
