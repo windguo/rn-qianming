@@ -551,7 +551,7 @@ export default class CreatTag extends Component {
 
     render() {
         return (
-            <View style={{flex: 1}} >
+            <View style={styles.wrap} >
                 <PullList
                     //  data={this.state.data}
                   //  contentContainerStyle={{justifyContent:"center", alignItems:'center'}}
@@ -586,6 +586,15 @@ const header = {
      alignItems: 'flex-end'
 }
 const styles = StyleSheet.create({
+    wrap: {
+        flex: 1,
+        ...ifIphoneX({
+            backgroundColor: '#fff',
+            paddingBottom: 30
+        }, {
+
+            }),
+    },
     base: {
         flex: 1
     },

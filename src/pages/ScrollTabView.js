@@ -83,7 +83,7 @@ export  default  class ScrollTabView extends Component {
                 </ImageBackground>
             )
         },
-        header:null
+        // header:null
     };
     //88  43.7 fontSize 17 fontWeight:600 RGBA0009 textALi;center
     constructor(props) {
@@ -492,7 +492,7 @@ export  default  class ScrollTabView extends Component {
             }
             return (
                 <View style={styles.wrap}>
-                    {Platform.OS === 'ios' ? <StatusBar barStyle="default" /> : null}
+                    {Platform.OS === 'ios' ? <StatusBar barStyle="light-content" /> : null}
                     {/* <View style={styles.wrapper}>
                         <Swiper showsButtons={false} autoplay={true}>
                             <View style={styles.slide1}>
@@ -510,13 +510,13 @@ export  default  class ScrollTabView extends Component {
                         {this.renderContent(this.state.sectionList)}
                     </ScrollableTabView>
                     
-                    <View style={styles.tabSearch}>
+                    {/* <View style={styles.tabSearch}>
                         <TouchableOpacity activeOpacity={0.6} onPress={() => {
                             this.props.navigation.navigate('SearchTag');
                         }}>
                             <MaterialIcons name="search" size={25} />
                         </TouchableOpacity>
-                    </View>
+                    </View> */}
                     
                     <Modal
                          animationType='fade'        // 淡入淡出
@@ -550,12 +550,12 @@ export  default  class ScrollTabView extends Component {
 const styles = StyleSheet.create({
     wrap:{
         flex:1,
-        backgroundColor:'#fff',
-        ...ifIphoneX({
-            paddingTop: 40
-        }, {
-            paddingTop: Platform.OS === "ios" ? 20 : SCALE(StatusBarHeight())
-        })
+        // backgroundColor:'#fff',
+        // ...ifIphoneX({
+        //     paddingTop: 40
+        // }, {
+        //     paddingTop: Platform.OS === "ios" ? 20 : SCALE(StatusBarHeight())
+        // })
     },
     tabSearch:{
         opacity:0.9,
